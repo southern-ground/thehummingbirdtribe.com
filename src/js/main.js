@@ -25,13 +25,49 @@ HBT.prototype = {
         });
     },
     processForm: function (e) {
-        var validEmail = function (email) {
+        var sanitizeField = function (html) {
+            var tagBody = '(?:[^"\'>]|"[^"]*"|\'[^\']*\')*';
+            var tagOrComment = new RegExp(
+                '<(?:' +
+                '!--(?:(?:-*[^->])*--+|-?)' +
+                '|script\\b' + tagBody + '>[\\s\\S]*?</script\\s*' +
+                '|style\\b' + tagBody + '>[\\s\\S]*?</style\\s*' +
+                '|/?[a-z]' +
+                tagBody +
+                ')>',
+                'gi');
+            var oldHtml;
+            do {
+                oldHtml = html;
+                html = html.replace(tagOrComment, '');
+            } while (html !== oldHtml);
+            return html.replace(/</g, '&lt;');
+        }, validEmail = function (email) {
             var regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
             return regEx.test(email);
-        };
-        if (validEmail(this.$emailField.val())) {
+        }, email = sanitizeField(this.$emailField.val());
+
+        if (validEmail(email)) {
             // Submit the form:
-            console.warn('Submit the form');
+
+            var url = "http://southernground.com/forms/the-hummingbird-tribe-sign-up.php";
+
+            $('body').addClass('inactive');
+
+            $.post(url, {
+                email: email
+            }, function (data) {
+                if (data && data.status && data.status === 200) {
+                    // Success:
+                    console.log('Success! Thanks for signing up.');
+                    $('body').removeClass('inactive');
+                } else {
+                    // Error:
+                    console.log('An error occurred. Please try again later.');
+                    console.warn(data);
+                    $('body').removeClass('inactive');
+                }
+            });
         } else {
             this.clearFormError();
             this.showFormError();
