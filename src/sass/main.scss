@@ -1,0 +1,158 @@
+@import '_mixins.scss';
+@import url('https://fonts.googleapis.com/css?family=Caveat+Brush');
+html{
+  body{
+    background: #ffffff;
+    font-family: 'Caveat Brush', cursive, sans-serif;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+    #content{
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-content: center;
+      align-items: center;
+      margin: 0 auto;
+      background-image: url(../img/background/hummingbird-background.jpg);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: 52% center;
+      -webkit-transition: background-position-x 1.5s, background-position-y 1.5s, -webkit-transform 1.5s;
+      transition: background-position-x 1.5s, background-position-y 1.5s, transform 1.5s;
+      @include media-xl{
+        background-position: 50% 28%;
+      }
+      img.branch{
+        position: absolute;
+        -webkit-transition: opacity 0.75s, left 0.85s, top 0.65s, -webkit-transform 2s;
+        transition: opacity 0.75s, left 0.85s, top 0.65s, transform 2s;
+
+        &--upperLeft{
+          zoom: 0.6;
+          top: -95px;
+          left: -160px;
+          @include media-xl {
+            zoom: 1;
+            top: -44px;
+            left: -83px;
+          }
+          @include media-xxl {
+            top: 0;
+            left: 0;
+          }
+        }
+        &--lowerLeft{
+          zoom: 0.6;
+          bottom: -52px;
+          left: -55px;
+          @include media-xl {
+            zoom: 1;
+            bottom: -54px;
+            left: -42px;
+          }
+          @include media-xxl {
+            bottom: -10px;
+            left: 0;
+          }
+        }
+      }
+      #hbt__content{
+        margin: 180px auto 0 auto;
+      }
+      section{
+        &.hbt{
+          position: relative;
+          &--join-the-tribe{
+            img{
+              width: 100%;
+              height: auto;
+              -webkit-transition: width 0.5s, height 0.5s, -webkit-transform 0.5s;
+              transition: width 0.5s, height 0.5s, transform 0.5s;
+            }
+
+            margin: 0 auto;
+            width: 80%;
+
+            h1{
+              text-indent:-10000px;
+            }
+          }
+          &--description{
+            font-size: 20px;
+            width: 90%;
+            max-width: 440px;
+            text-align: center;
+            margin: 18px auto 0 auto;
+
+          }
+          &--form{
+            margin: 26px auto 0 auto;
+            max-width: 440px;
+
+            form{
+              display: flex;
+              flex-direction:column;
+              justify-content: center;
+              align-items: center;
+              align-content: center;
+              @include media-small{
+                flex-direction:row;
+                justify-content: space-between;
+                align-items: center;
+                align-content: center;
+              }
+              input[type=text]{
+                background-color: #eae7e3;
+                color: #a1927c;
+                font-family: inherit;
+                font-size: 20px;
+                border: 1px solid transparent;
+                width: 250px;
+                margin: 0 0 10px 0;
+                @include media-small{
+                  margin: 0;
+                }
+              }
+              button[type=submit]{
+                background-image: url(../img/form-button-background.png);
+                color: white;
+                font-family: inherit;
+                border: none;
+                width: 175px;
+                height: 48px;
+                background-color: transparent;
+                background-repeat: no-repeat;
+                font-size: 24px;
+              }
+            }
+          }
+        }
+      }
+      footer{
+        position: relative;
+        margin: 0 auto;
+        font-size: 18px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        padding: 20px;
+        text-align:center;
+        @include media-desktop {
+          margin: 80px 0 0 0;
+        }
+        .hbt__footer__logo{
+          @include media-desktop{
+            position: absolute;
+            right: -300px;
+            bottom: -25px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The Hummingbird Tribe</title>
+    <link href="css/main.css?id={{guid()}}" rel="stylesheet" />
+</head>
+<body>
+    <div id="content">
+        <img class="branch branch--upperLeft" src="./img/background/upper-left-branch.png" />
+        <img class="branch branch--lowerLeft" src="./img/background/lower-left-branch.png" />
+        <div id="hbt__content">
+            <section class="hbt hbt--join-the-tribe">
+                <h1>{{logoAlt}}</h1>
+                <img data-original="./img/join-the-tribe.png" />
+            </section>
+            <section class="hbt hbt--description">
+                {{subtitle}}
+            </section>
+            <section class="hbt hbt--form">
+                <form>
+                    <input type="text"
+                           placeholder="{{formData.input.placeholder}}">
+                    <button type="submit">{{formData.cta}}</button>
+                </form>
+            </section>
+        </div>
+
+        <footer>
+            <img class="hbt__footer__logo" data-original="./img/hummingbird-logo.png" />
+            {{bottomTag|safe}}
+        </footer>
+
+    </div>
+    <script src="js/vendor/jquery.min.js"></script>
+    <script src="js/vendor/lazyload.transpiled.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

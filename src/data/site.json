@@ -1,0 +1,13 @@
+{
+  "logoAlt": "Join the Tribe!",
+  "subtitle": "Become a member of our tribe to be the first to know about exclusive content, downloads, and release dates!",
+  "formData": {
+    "input": {
+      "background-color": "#eae7e3",
+      "placeholder": "email address"
+    },
+    "cta": "Sign Me Up!"
+  },
+  "bottomTag": "Written by Shelly Brown &amp; Illustrated by&nbsp;Alexandra&nbsp;Clotfelter",
+  "logoAlt": "The Humming Bird Tribe"
+}
