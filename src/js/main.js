@@ -59,11 +59,12 @@ HBT.prototype = {
             }, function (data) {
                 if (data && data.status && data.status === 200) {
                     // Success:
-                    console.log('Success! Thanks for signing up.');
+                    hbt.$errorMsg.html('Success! Thanks for signing up.');
+                    hbt.$emailField.val('');
                     $('body').removeClass('inactive');
                 } else {
                     // Error:
-                    console.log('An error occurred. Please try again later.');
+                    hbt.$errorMsg.html('An error occurred. Please try again later.');
                     console.warn(data);
                     $('body').removeClass('inactive');
                 }
