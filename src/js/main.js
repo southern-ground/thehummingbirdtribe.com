@@ -10,35 +10,40 @@ var hbt,
         this.$errorMsg = $('#error-message');
     };
 HBT.prototype = {
+    clearFormError: function () {
+        this.$signUpForm.removeClass('form-error');
+        this.$errorMsg.html('&nbsp;');
+    },
     init: function () {
-        console.log('hbt');
+        var _this = this;
         this.lazyload = new LazyLoad();
-        this.$signUpForm.on('submit', function(e){
-            hbt.$signUpForm.removeClass('form-error');
-            hbt.$errorMsg.addClass('hidden');
-
-            var validEmail = function (email) {
-                var regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-                return regEx.test(email);
-            };
-
-            if (validEmail(hbt.$emailField.val())) {
-                // Submit the form:
-                console.log('\tSubmit the form');
-            } else {
-                hbt.$signUpForm.addClass('form-error');
-                hbt.$errorMsg.removeClass('hidden');
-            }
-
-            e.preventDefault();
-            e.stopPropagation();
-            void(0);
-            return false;
-
+        this.$signUpForm.on('submit', function (e) {
+            _this.processForm(e);
+        });
+        this.$emailField.on('focus', function () {
+            _this.clearFormError();
         });
     },
-    resize: function () {
-
+    processForm: function (e) {
+        var validEmail = function (email) {
+            var regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            return regEx.test(email);
+        };
+        if (validEmail(this.$emailField.val())) {
+            // Submit the form:
+            console.warn('Submit the form');
+        } else {
+            this.clearFormError();
+            this.showFormError();
+        }
+        e.preventDefault();
+        e.stopPropagation();
+        void(0);
+        return false;
+    },
+    showFormError: function () {
+        this.$signUpForm.addClass('form-error');
+        this.$errorMsg.html('Please enter a valid email address.');
     }
 };
 $(document).ready(function () {

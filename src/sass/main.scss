@@ -134,11 +134,14 @@ html {
                 font-size: 24px;
                 cursor: pointer;
               }
-              &.form-error{
-                input[type=text]{
+              &.form-error {
+                input[type=text] {
                   border: 1px solid red;
                 }
               }
+            }
+            #error-message {
+              text-align: center;
             }
           }
         }
