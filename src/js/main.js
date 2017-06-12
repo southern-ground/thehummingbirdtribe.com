@@ -26,26 +26,28 @@ HBT.prototype = {
     },
     processForm: function (e) {
         var sanitizeField = function (html) {
-            var tagBody = '(?:[^"\'>]|"[^"]*"|\'[^\']*\')*';
-            var tagOrComment = new RegExp(
-                '<(?:' +
-                '!--(?:(?:-*[^->])*--+|-?)' +
-                '|script\\b' + tagBody + '>[\\s\\S]*?</script\\s*' +
-                '|style\\b' + tagBody + '>[\\s\\S]*?</style\\s*' +
-                '|/?[a-z]' +
-                tagBody +
-                ')>',
-                'gi');
-            var oldHtml;
-            do {
-                oldHtml = html;
-                html = html.replace(tagOrComment, '');
-            } while (html !== oldHtml);
-            return html.replace(/</g, '&lt;');
-        }, validEmail = function (email) {
-            var regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-            return regEx.test(email);
-        }, email = sanitizeField(this.$emailField.val());
+                var tagBody = '(?:[^"\'>]|"[^"]*"|\'[^\']*\')*',
+                    tagOrComment = new RegExp(
+                        '<(?:' +
+                        '!--(?:(?:-*[^->])*--+|-?)' +
+                        '|script\\b' + tagBody + '>[\\s\\S]*?</script\\s*' +
+                        '|style\\b' + tagBody + '>[\\s\\S]*?</style\\s*' +
+                        '|/?[a-z]' +
+                        tagBody +
+                        ')>',
+                        'gi'),
+                    oldHtml;
+                do {
+                    oldHtml = html;
+                    html = html.replace(tagOrComment, '');
+                } while (html !== oldHtml);
+                return html.replace(/</g, '&lt;');
+            },
+            validEmail = function (email) {
+                var regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                return regEx.test(email);
+            },
+            email = sanitizeField(this.$emailField.val());
 
         if (validEmail(email)) {
             // Submit the form:
@@ -59,7 +61,7 @@ HBT.prototype = {
             }, function (data) {
                 if (data && data.status && data.status === 200) {
                     // Success:
-                    hbt.$errorMsg.html('Success! Thanks for signing up.');
+                    hbt.$errorMsg.html('<p><strong>Thank you</strong> for signing up and keep an eye out for updates regarding The&nbsp;Hummingbird&nbsp;Tribe!</p>');
                     hbt.$emailField.val('');
                     $('body').removeClass('inactive');
                 } else {
