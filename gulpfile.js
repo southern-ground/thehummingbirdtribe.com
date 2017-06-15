@@ -42,13 +42,6 @@ var manageEnvironment = function(environment) {
     });
 };
 
-gulp.task('copy:docs', function (done) {
-    return gulp.src([dirs.src + "/docs/**/*.*"], {
-        dot: false
-    })
-        .pipe(gulp.dest(dirs.dist + "/docs/"));
-});
-
 gulp.task('compress:js', function (done) {
     var options = {
         compress: {
@@ -135,7 +128,6 @@ gulp.task('copy', function (done) {
         'copy:jsVendor',
         'copy:fonts',
         'copy:cssFonts',
-        'copy:docs',
         'copy:video'
     ], done);
 });
