@@ -113,6 +113,13 @@ gulp.task('copy:cssFonts', function (done) {
         .pipe(gulp.dest(dirs.dist + "/css/fonts/"));
 });
 
+gulp.task('copy:php', function (done) {
+    return gulp.src([dirs.src + "/*.php"], {
+        dot: false
+    })
+        .pipe(gulp.dest(dirs.dist));
+});
+
 gulp.task('copy:video', function (done) {
     return gulp.src([dirs.src + "/video/**/*.*", "!" + dirs.src + "/video/src/*.*"], {
         dot: false
@@ -122,6 +129,7 @@ gulp.task('copy:video', function (done) {
 
 gulp.task('copy', function (done) {
     runSequence([
+        'copy:php',
         'copy:icons',
         'copy:images',
         'compress:js',
