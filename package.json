@@ -11,6 +11,7 @@
     "jquery": "cp ./node_modules/jquery/dist/jquery.min.js ./dist/js/vendor/",
     "externals": "npm run clean && npm run bootstrap && npm run normalize && npm run underscore && npm run jquery",
     "start": "npm run externals && gulp --env=dev",
+    "start:prod": "npm run externals && gulp --env=prod",
     "build": "npm run externals && gulp build",
     "build:stage": "npm run externals && gulp build --env=stage",
     "build:prod": "npm run externals && gulp build --env=prod"
