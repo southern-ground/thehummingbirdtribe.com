@@ -52,7 +52,7 @@ HBT.prototype = {
         if (validEmail(email)) {
             // Submit the form:
 
-            var url = "http://southernground.com/forms/the-hummingbird-tribe-sign-up.php";
+            var url = $('form').data('target'); // "http://southernground.com/forms/the-hummingbird-tribe-sign-up.php";
 
             $('body').addClass('inactive');
 
