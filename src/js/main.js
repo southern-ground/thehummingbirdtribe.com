@@ -71,9 +71,11 @@ HBT.prototype = {
                     $('body').removeClass('inactive');
                 }
             });
+            this.trackEvent('Form Submit', 'click', 'Success');
         } else {
             this.clearFormError();
             this.showFormError();
+            this.trackEvent('Form Submit', 'click', 'Form Error');
         }
         e.preventDefault();
         e.stopPropagation();
@@ -83,6 +85,18 @@ HBT.prototype = {
     showFormError: function () {
         this.$signUpForm.addClass('form-error');
         this.$errorMsg.html('Please enter a valid email address.');
+    },
+    trackEvent: function (evtCategory,evtAction,evtLabel){
+        try{
+            ga('send', {
+                hitType: 'event',
+                eventCategory: evtCategory,
+                eventAction: evtAction,
+                eventLabel: evtLabel
+            });
+        }catch(e){
+            console.warn(e);
+        }
     }
 };
 $(document).ready(function () {
