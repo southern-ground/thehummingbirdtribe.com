@@ -78,6 +78,13 @@ gulp.task('compress:js', function (done) {
     );
 });
 
+gulp.task('copy:icons', function (done) {
+    return gulp.src([dirs.src + "/*.png", dirs.src + "/*.ico"], {
+        dot: false
+    })
+        .pipe(gulp.dest(dirs.dist));
+});
+
 gulp.task('copy:images', function (done) {
     return gulp.src([dirs.src + "/img/**/*.*"], {
         dot: false
@@ -122,6 +129,7 @@ gulp.task('copy:video', function (done) {
 
 gulp.task('copy', function (done) {
     runSequence([
+        'copy:icons',
         'copy:images',
         'compress:js',
         'copy:jsVendor',
