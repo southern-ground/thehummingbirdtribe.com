@@ -34,6 +34,12 @@ html {
       min-height: 100vh;
       padding: 20px;
       overflow: hidden;
+      .offstage-copy{
+        height: 0;
+        *{
+          text-indent: -9999px;
+        }
+      }
       @include media-xl {
         background-position: 50% 28%;
       }
@@ -114,6 +120,12 @@ html {
       section {
         &.hbt {
           position: relative;
+          &.copy{
+            text-align: center;
+            margin: 0 0 40px;
+            padding: 0 20px;
+            max-width: 767px;
+          }
           &--join-the-tribe {
             img {
               width: 100%;
@@ -188,6 +200,7 @@ html {
             .printable-copy {
               width: 100%;
               height: auto;
+              margin: 0 0 20px;
             }
 
             ul.printable-items {
@@ -237,6 +250,83 @@ html {
 
           }
           &--free-gift{
+
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-content: center;
+            align-items: flex-start;
+            .form-border{
+              display: none;
+            }
+            @include media-desktop{
+              justify-content: space-between;
+              .form-border{
+                display: block;
+              }
+            }
+            .copy{
+              text-align: center;
+            }
+            form{
+              width: 340px;
+              margin: 0 20px;
+              display: flex;
+              flex-direction: column;
+              *{
+                margin: 0 0 20px;
+                font-size: 1.25em;
+                padding: 4px;
+                font-family: 'Caveat Brush', cursive, sans-serif;
+                &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+                  color: #a1927c;
+                }
+                &::-moz-placeholder { /* Firefox 19+ */
+                  color: #a1927c;
+                }
+                &:-ms-input-placeholder { /* IE 10+ */
+                  color: #a1927c;
+                }
+                &:-moz-placeholder { /* Firefox 18- */
+                  color: #a1927c;
+                }
+              }
+              input, select, option{
+                text-align: center;
+                text-align-last:center;
+                background-color: #eae8e3;
+                border: none;
+              }
+              button[type=submit]{
+                background-image: url('../img/free-gift/submit-btn.png');
+                width: 170px;
+                height: 44px;
+                border: none;
+                margin: 0 auto;
+                text-indent: -9999px;
+                &:hover{
+                  cursor: pointer;
+                }
+              }
+              .state-zip{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                font-size: 20px;
+                *{
+                  margin: 0;
+                  padding: 0;
+                }
+                select.state, input.state-providence{
+                  width: 66%;
+                  font-size: 20px;
+                }
+                input.zip{
+                  width: 30%;
+                  font-size: 20px;
+                }
+              }
+            }
 
           }
         }
