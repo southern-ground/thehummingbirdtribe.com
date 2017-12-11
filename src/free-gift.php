@@ -19,7 +19,6 @@ $address_two = $_POST['address_two'];
 $city = $_POST['city'];
 $state = $_POST['state'];
 $zip = $_POST['zip'];
-$country = $_POST['country'];
 $email = $_POST['email'];
 
 require_once('hbt-data.php');
@@ -35,13 +34,12 @@ $conn = 'n/a';
 if ($dbconn->connect_error) {
     $conn = "Connection failed: " . $dbconn->connect_error;
 }else{
-    $conn = "Connected successfully";
 
-    // Carry on.
+    $conn = "Connected successfully"; // Carry on.
 
     $now = date('Y-m-d H:i:s');
 
-    $query = "INSERT INTO $GIFT_DB_TABLE (date_created, full_name, address_one, address_two, city, state, country, zip, email) VALUES ('$now', '$full_name', '$address_one', '$address_two', '$city', '$state', '$country', '$zip', '$email')";
+    $query = "INSERT INTO $GIFT_DB_TABLE (date_created, full_name, address_one, address_two, city, state, country, zip, email) VALUES ('$now', '$full_name', '$address_one', '$address_two', '$city', '$state', '$zip', '$email')";
 
     if ($dbconn->query($query) === TRUE) {
         $error = "New record created successfully";
@@ -51,11 +49,13 @@ if ($dbconn->connect_error) {
         $status = 500;
     }
 
+    sendGiftNotification($status === 200 ? 1 : 0, $now, $full_name, $address_one, $address_two, $city, $state, $zip, $email);
+
 }
 
 // $dbconn->close();
 
-$data =["status" => $status, "error" => $error]; // "message" => $app_message, "email" => $_POST['email']];
+$data =["status" => $status, "error" => $error, "mail" => $emailNotification];
 
 header('Content-type: application/json');
 

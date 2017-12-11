@@ -18,9 +18,8 @@ HBT.prototype = {
             _this.processGiftForm(e);
         });
     },
-    resetGiftForm: function(){
-        $('#full-name, #address-one, #address-two, #city, #zip, #email, #state-providence').val('');
-        $('#country-select').val('US');
+    resetGiftForm: function () {
+        $('#full-name, #address-one, #address-two, #city, #zip, #email').val('');
         $('#us-states').val('---');
         this.updateFields();
     },
@@ -42,10 +41,6 @@ HBT.prototype = {
         } while (html !== oldHtml);
         return html.replace(/</g, '&lt;');
     },
-    validEmail: function (email) {
-        var regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-        return regEx.test(email);
-    },
     trackEvent: function (evtCategory, evtAction, evtLabel) {
         try {
             ga('send', {
@@ -59,17 +54,17 @@ HBT.prototype = {
         }
     },
     processGiftForm: function (e) {
-        var isUS = $('#country-select').val() === 'US';
         var formData = {
             full_name: this.sanitizedField($('#full-name').val()),
             address_one: this.sanitizedField($('#address-one').val()),
             address_two: this.sanitizedField($('#address-two').val()),
             city: this.sanitizedField($('#city').val()),
-            state: this.sanitizedField(isUS ? $('#us-states').val() : $('#state-providence').val()),
+            state: this.sanitizedField($('#us-states').val()),
             zip: this.sanitizedField($('#zip').val()),
-            country: isUS ? 'US' : this.sanitizedField($('#other-country').val()),
+            country: 'US',
             email: this.sanitizedField($('#email').val())
         };
+
         var url = $('form').data('target');
 
         $('body').addClass('inactive');
@@ -79,17 +74,21 @@ HBT.prototype = {
         $.post(url, formData, function (data) {
             if (data && data.status && data.status === 200) {
                 // Success:
-                hbt.$errorMsg.html('<p><strong>Thank you</strong> for your request up and keep an eye out for updates regarding The&nbsp;Hummingbird&nbsp;Tribe!</p>');
-                $('body').removeClass('inactive');
+                hbt.$errorMsg.html('<p><strong>Your address has been received!</strong><br />Thank you, and keep an eye out for updates regarding The&nbsp;Hummingbird&nbsp;Tribe!</p>');
                 hbt.trackEvent('Form Submit', 'click', 'Success');
                 hbt.resetGiftForm();
             } else {
                 // Error:
                 hbt.$errorMsg.html('An error occurred. Please try again later.');
                 console.warn(data);
-                $('body').removeClass('inactive');
                 hbt.trackEvent('Form Submit', 'click', 'Form Error');
             }
+            $('body').removeClass('inactive');
+        }).fail(function(e){
+            console.error(e);
+            hbt.$errorMsg.html('<strong class="critical-error">An error occurred.</strong><br />Please try&nbsp;again&nbsp;later.');
+            hbt.trackEvent('Form Submit', 'click', 'Form/Server Error');
+            $('body').removeClass('inactive');
         });
 
         e.preventDefault();
@@ -98,19 +97,7 @@ HBT.prototype = {
         return false;
     },
     updateFields: function () {
-        if (document.getElementById('country-select').value !== 'US') {
-            document.getElementById('other-country').classList.remove('hidden');
-            document.getElementById('us-states').classList.add('hidden');
-            document.getElementById('state-providence').classList.remove('hidden');
-            document.getElementById('zip').placeholder = "Post Code";
-            document.getElementById('zip').setAttribute('type', 'text');
-        } else {
-            document.getElementById('other-country').classList.add('hidden');
-            document.getElementById('us-states').classList.remove('hidden');
-            document.getElementById('state-providence').classList.add('hidden');
-            document.getElementById('zip').placeholder = "Zip";
-            document.getElementById('zip').setAttribute('type', 'number');
-        }
+
     }
 };
 
