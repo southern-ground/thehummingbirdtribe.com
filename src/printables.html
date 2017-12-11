@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>The Hummingbird Tribe</title>
+    <title>The Hummingbird Tribe Printables</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/vendor/normalize.css">
@@ -16,38 +16,41 @@
     <link rel="apple-touch-icon" sizes="167x167" href="touch-icon-ipad-retina.png">
 </head>
 <body>
-<div id="content"">
+<div id="content" class="sub-page">
     <img class="branch branch--upperLeft" src="./img/background/upper-left-branch.png"/>
     <img class="branch branch--lowerLeft" src="./img/background/lower-left-branch.png"/>
     <div id="hbt__content">
-        <section class="hbt hbt--join-the-tribe">
-            <h1>{{logoAlt}}</h1>
-            <img data-original="./img/join-the-tribe.png"/>
-        </section>
-        <section class="hbt hbt--description">
-            {{subtitle}}
-        </section>
-        <section class="hbt hbt--form">
-            <form id="sign-up" data-target="{{formData.url}}">
-                <input id="email"
-                       type="text"
-                       placeholder="{{formData.input.placeholder}}">
-                    <button type="submit">{{formData.cta}}</button>
-            </form>
-            <p id="error-message"
-               class="errorText">&nbsp;</p>
+        <section class="hbt hbt--printables">
+
+            <img src="img/printables/printables-copy.png" class="printable-copy" />
+
+            <ul class="printable-items">
+                <li>
+                    <img src="img/printables/do-good-list.png" class="printables good-list" />
+                    <a class="download-btn"
+                       href="downloads/Hummingbird_Tribe-Do_Good_List.pdf"
+                       target="_blank">Download</a>
+                </li>
+                <li>
+                    <img src="img/printables/diligence-workbook.png" class="printables workbook" />
+                    <a class="download-btn"
+                       href="downloads/Hummingbird_Tribe-Diligence-work-sheet.pdf"
+                       target="_blank">Download</a>
+                </li>
+            </ul>
+
         </section>
         <nav>
             <ul>
-                <li><a href="./" class="nav-link home active">Home</a></li>
-                <li><a href="./printables.html" class="nav-link printables">Printables</a></li>
+                <li><a href="./" class="nav-link home">Home</a></li>
+                <li><a href="./printables.html" class="nav-link printables active">Printables</a></li>
                 <li><a href="./free-gift.html" class="nav-link free-gift">Free Gift</a></li>
             </ul>
         </nav>
     </div>
     <footer>
         <img class="hbt__footer__logo" data-original="./img/hummingbird-logo.png"/>
-        {{bottomTag|safe}}
+
     </footer>
     <div id="blocker">
         <img src="img/loading.gif" />

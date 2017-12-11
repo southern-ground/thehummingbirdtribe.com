@@ -71,6 +71,13 @@ gulp.task('compress:js', function (done) {
     );
 });
 
+gulp.task('copy:downloads', function (done) {
+    return gulp.src([dirs.src + "/downloads/**/*.*"], {
+        dot: false
+    })
+        .pipe(gulp.dest(dirs.dist + "/downloads/"));
+});
+
 gulp.task('copy:icons', function (done) {
     return gulp.src([dirs.src + "/*.png", dirs.src + "/*.ico"], {
         dot: false
@@ -132,6 +139,7 @@ gulp.task('copy', function (done) {
         'copy:php',
         'copy:icons',
         'copy:images',
+        'copy:downloads',
         'compress:js',
         'copy:jsVendor',
         'copy:fonts',

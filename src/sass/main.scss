@@ -6,9 +6,9 @@ html {
   body {
     -webkit-transition: all 1.5s, -webkit-transform 1.5s;
     transition: all 1.5s, transform 1.5s;
-    &.inactive{
+    &.inactive {
       overflow: hidden;
-      #blocker{
+      #blocker {
         display: flex;
         opacity: 1;
       }
@@ -36,6 +36,9 @@ html {
       overflow: hidden;
       @include media-xl {
         background-position: 50% 28%;
+      }
+      &.sub-page {
+        background: none;
       }
       img.branch {
         position: absolute;
@@ -76,6 +79,37 @@ html {
       }
       #hbt__content {
         margin: 180px auto 0 auto;
+        nav {
+          position: absolute;
+          right: 20px;
+          top: 5px;
+          ul {
+            list-style: none;
+            li {
+              a {
+                text-indent: -9999px;
+                &.nav-link {
+                  display: inline-block;
+                  height: 42px;
+                  width: 83px;
+                  background-image: url('../img/nav-buttons.png');
+                  background-position-x: -2px;
+                  overflow: hidden;
+                  margin: 0 10px;
+                  &.active, &:hover {
+                    background-position-x: -88px;
+                  }
+                  &.free-gift {
+                    background-position-y: 42px;
+                  }
+                  &.printables {
+                    background-position-y: 84px;
+                  }
+                }
+              }
+            }
+          }
+        }
       }
       section {
         &.hbt {
@@ -149,6 +183,62 @@ html {
               text-align: center;
             }
           }
+          &--printables {
+
+            .printable-copy {
+              width: 100%;
+              height: auto;
+            }
+
+            ul.printable-items {
+              margin: 0;
+              padding: 0;
+              list-style: none;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-around;
+              align-content: center;
+              align-items: center;
+
+              @include media-tablet-portrait{
+                flex-direction: row;
+              }
+
+              li {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-content: center;
+                align-items: center;
+                margin: 0 0 20px;
+                .printables{
+                  width: 100%;
+                  height: auto;
+                  &.good-list{
+                    max-width: 226px;
+                  }
+                  &.workbook{
+                    max-width: 462px;
+                  }
+                }
+                .download-btn {
+                  display: inline-block;
+                  background-image: url('../img/printables/download-btn.png');
+                  width: 170px;
+                  height: 43px;
+                  text-indent: -9999px;
+                  margin: 20px 0 0;
+                }
+              }
+
+            }
+
+
+
+          }
+          &--free-gift{
+
+          }
         }
       }
       footer {
@@ -174,7 +264,7 @@ html {
         }
       }
     }
-    #blocker{
+    #blocker {
       position: fixed;
       top: 0;
       left: 0;
@@ -183,8 +273,8 @@ html {
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      background: rgba(255,255,255,0.8);
-      img{
+      background: rgba(255, 255, 255, 0.8);
+      img {
         width: 60px;
         height: auto;
       }
@@ -192,4 +282,5 @@ html {
       display: none;
     }
   }
+
 }
