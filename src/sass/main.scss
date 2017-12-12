@@ -298,15 +298,19 @@ html {
                 font-family: 'Caveat Brush', cursive, sans-serif;
                 &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
                   color: #a1927c;
+                  text-transform: uppercase;
                 }
                 &::-moz-placeholder { /* Firefox 19+ */
                   color: #a1927c;
+                  text-transform: uppercase;
                 }
                 &:-ms-input-placeholder { /* IE 10+ */
                   color: #a1927c;
+                  text-transform: uppercase;
                 }
                 &:-moz-placeholder { /* Firefox 18- */
                   color: #a1927c;
+                  text-transform: uppercase;
                 }
               }
               input, select, option{
