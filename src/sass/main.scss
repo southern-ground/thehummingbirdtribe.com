@@ -401,3 +401,31 @@ html {
   }
 
 }
+
+#CountDown{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  .countDown{
+    &--days{
+      display: block;
+      font-size: 40px;
+      margin: 0 0 4px;
+      color: #f03d2e;
+      background: url(../../img/date-underline.png);
+      background-repeat: no-repeat;
+      background-position: center bottom;
+    }
+    &--days-till{
+      display: block;
+
+    }
+    &--christmas{
+      display: block;
+      font-size: 20px;
+      text-transform: uppercase;
+    }
+  }
+}

@@ -17,6 +17,7 @@ HBT.prototype = {
         this.$giftForm.on('submit', function (e) {
             _this.processGiftForm(e);
         });
+        this.countDown = new CountDown(new Date(), $('#DaysRemaining'));
     },
     resetGiftForm: function () {
         $('#full-name, #address-one, #address-two, #city, #zip, #email').val('');
@@ -98,6 +99,54 @@ HBT.prototype = {
     },
     updateFields: function () {
 
+    }
+};
+
+var CountDown = function(now,$el){
+    this.now = now;
+    this.$el = $el;
+    this.christmas = this.nextChristmas(new Date(this.now.getTime()));
+    this.daysRemaining = this.getDaysRemaining(this.now, this.christmas);
+    this.updateInterval = 15000;
+    this.interval = null;
+    this.init();
+
+};
+CountDown.prototype = {
+    getDaysRemaining: function(now,then){
+        return Math.ceil(this.daysDifference(now,then));
+    },
+    init: function(){
+        var scope = this;
+        this.interval = setInterval(function(){
+            scope.updateCounter();
+        }, this.updateInterval);
+        this.updateCounter();
+    },
+    nextChristmas: function(now) {
+        if (now.getMonth() === 11) {
+            if (now.getDate() > 25) {
+                now.setFullYear(now.getFullYear() + 1);
+            }
+        }
+        now.setMonth(11);
+        now.setDate(25);
+        now.setHours(0);
+        now.setMinutes(0);
+        now.setSeconds(1);
+
+        return now;
+    },
+    daysDifference: function(now, then){
+        var days = function(n){
+            return n / 1000 / 60 / 60 / 24;
+        };
+        return days(then - now);
+    },
+    updateCounter: function(){
+        this.now = new Date();
+        this.daysRemaining = this.getDaysRemaining(this.now,this.christmas);
+        this.$el.html(this.daysRemaining);
     }
 };
 
